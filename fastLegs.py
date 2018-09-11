@@ -2,7 +2,7 @@ import pygame
 pygame.init()
 
 win_width = 1000
-win_height = 800
+win_height = 600
 
 win = pygame.display.set_mode((win_width, win_height))
 
@@ -14,11 +14,11 @@ speed = 3
 
 y_constant =  y
 
-jumpSpeed = 5
+jumpSpeed = 8
 jump = False
 
 #Keep delayLimit even number
-delayLimit = 16
+delayLimit = 26
 delay = -delayLimit
 
 pygame.display.set_caption("Fast Legs")
@@ -43,19 +43,22 @@ while run:
 
 
     #For Jumping mechanics
-    if key[pygame.K_SPACE]:
+    if key[pygame.K_UP] or key[pygame.K_w]:
         jump = True
 
     if jump:
         if delay < 0:
-            y -= jumpSpeed
+            y -= (delay*delay)/50
             delay += 1
 
-        elif delay < delayLimit:
-            y += jumpSpeed
+        elif delay == 0:
             delay += 1
 
-        elif delay == delayLimit:
+        elif delay <= delayLimit:
+            y += (delay*delay)/50
+            delay += 1
+
+        elif delay == delayLimit+1:
             jump = False
             delay = -delayLimit
 
