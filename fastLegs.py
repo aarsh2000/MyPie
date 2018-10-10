@@ -72,7 +72,7 @@ class Circle:
             self.x = cx
             self.dx = int(random()*speed_multiplier+speed_base)
             s = self.dx
-            if score%3==0 and score<=55:
+            if score% 3==0 and score<=55:
                 speed_base +=1
 
 
@@ -183,9 +183,13 @@ while run:
     if(left):
         win.blit(walkLeft[leftCount], (x, y))
         leftCount +=1
+        if x<=0:
+            x = 0
     elif(right):
         win.blit(walkRight[rightCount], (x, y))
         rightCount+=1
+        if x >= win_width -45:
+            x = win_width -45
     else:
         win.blit(stand, (x, y))
 
@@ -208,10 +212,14 @@ while run:
                 run_t = False
                 leave = font.render("D:", True, (int(random()*255), int(random()*255), int(random()*255)))
                 win.blit(leave, (win_width/2, win_height / 2))
+                speed_base = 3
+                s=3
+                Circles[0].dx = s
                 score = 0
                 run_t = True
                 Circles[0].x = win_width
                 x = 60
+
             if run_t:
                 pygame.display.update()
 
