@@ -1,2 +1,2 @@
 # MyPie
-For python projects under development 
+Game made with python, download it or see it being played here:
